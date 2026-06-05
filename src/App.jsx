@@ -62,7 +62,7 @@ export default function App() {
             <a href="#projects">Lihat Proyek</a>
           </button>
         </div>
-        <div className="col-span-4">
+        <div className="col-span-4 ml-10">
           <img src={DataImage.HeroImage} alt="Hero Image" className="w-full max-w-[400px] mx-auto lg:mx-0" />
         </div>
       </div>
