@@ -1,7 +1,8 @@
-import HeroImage from "/assets/hero-img.webp";
+import HeroImage from "/assets/hero-img2.png";
+import HeroImage2 from "/assets/hero-img1.png";
 
 const Image = {
-  HeroImage,
+  HeroImage, HeroImage2
 };
 
 export default Image;
