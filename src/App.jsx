@@ -225,7 +225,7 @@ export default function App() {
                 <div className="flex-1" />
                 {/* CTA */}
                 <a
-                  href={proyek.link}
+                  href="http://queasy.site.je/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-3 flex items-center justify-center gap-2 bg-violet-600 hover:bg-violet-500 text-white text-sm font-medium px-4 py-2.5 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-violet-700/30"

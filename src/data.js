@@ -88,34 +88,34 @@ export const listTools = [
   },
 ];
 
-import Proyek1 from "/assets/proyek/proyek1.webp";
-import Proyek2 from "/assets/proyek/proyek2.webp";
-import Proyek3 from "/assets/proyek/proyek3.webp";
+import Proyek1 from "/assets/proyek/queasy.png";
+import Proyek2 from "/assets/proyek/proyek6.webp";
+import Proyek3 from "/assets/proyek/mbatic.png";
 import Proyek4 from "/assets/proyek/proyek4.webp";
-import Proyek5 from "/assets/proyek/proyek5.webp";
-import Proyek6 from "/assets/proyek/proyek6.webp";
+import Proyek5 from "/assets/proyek/qumon.png";
+import Proyek6 from "/assets/proyek/proyek6.png";
 
 export const listProyek = [
   {
     id: 1,
     gambar: Proyek1,
-    nama: "Aplikasi Identifikasi Motif Batik Pekalongan",
-    desk: "Aplikasi mobile berbasis Flutter yang mampu mengidentifikasi motif Batik Pekalongan menggunakan model CNN MobileNetV2.",
-    tools: ["Flutter", "Python", "TensorFlow", "MobileNetV2"],
+    nama: "Queasy",
+    desk: "Aplikasi web kuis interaktif yang dirancang untuk memudahkan proses pembelajaran dan evaluasi. Dilengkapi fitur autentikasi pengguna, leaderboard, manajemen soal, serta panel administrasi untuk pengelolaan sistem.",
+    tools: ["PHP", "MySQL", "Bootstrap", "JavaScript"],
   },
   {
     id: 2,
     gambar: Proyek2,
-    nama: "Sistem Informasi Inventaris",
-    desk: "Aplikasi web untuk pengelolaan inventaris barang dengan fitur CRUD dan laporan data.",
-    tools: ["PHP", "MySQL", "Bootstrap"],
+    nama: "Website Company Profile",
+    desk: "Website company profile modern dengan desain responsif dan optimalisasi pengalaman pengguna.",
+    tools: ["HTML", "CSS", "JavaScript"],
   },
   {
     id: 3,
     gambar: Proyek3,
-    nama: "Website Portofolio Pribadi",
-    desk: "Website portofolio responsif untuk menampilkan profil, skill, dan proyek yang pernah dikerjakan.",
-    tools: ["React", "Vite", "Tailwind CSS"],
+    nama: "MBatiC: Mobile Batik Classifier",
+    desk: "Aplikasi mobile berbasis Flutter untuk identifikasi motif Batik Pekalongan menggunakan model CNN MobileNetV2. Aplikasi mampu mengenali berbagai motif batik serta menyajikan informasi edukatif mengenai motif yang terdeteksi.",
+    tools: ["Flutter", "Python", "TensorFlow", "MobileNetV2", "SQLite"],
   },
   {
     id: 4,
@@ -127,15 +127,15 @@ export const listProyek = [
   {
     id: 5,
     gambar: Proyek5,
-    nama: "UI/UX Mobile Learning App",
-    desk: "Perancangan antarmuka aplikasi pembelajaran menggunakan Figma dengan pendekatan user-centered design.",
-    tools: ["Figma", "UI/UX"],
+    nama: "QuMon",
+    desk: "Aplikasi microlearning berbasis mobile yang menghadirkan pengalaman belajar melalui feed kuis vertikal seperti TikTok. Pengguna dapat menemukan, menjawab, dan menyimpan soal dari berbagai kategori secara cepat dan interaktif, menjadikan proses belajar lebih menarik dan mudah diakses.",
+    tools: ["Flutter", "Dart", "Firebase", "PHP", "Laravel"],
   },
   {
     id: 6,
     gambar: Proyek6,
-    nama: "Website Company Profile",
-    desk: "Website company profile modern dengan desain responsif dan optimalisasi pengalaman pengguna.",
-    tools: ["HTML", "CSS", "JavaScript"],
+    nama: "SIMBA BPS Kota Pekalongan",
+    desk: "Sistem informasi inventaris berbasis web yang dikembangkan untuk mendukung pengelolaan barang masuk dan keluar di BPS Kota Pekalongan. Dilengkapi fitur pencatatan transaksi, monitoring stok, pencarian data, dan pembuatan laporan guna meningkatkan efisiensi administrasi inventaris.",
+    tools: ["PHP", "Laravel", "Blade", "Bootstrap"],
   },
 ];
