@@ -101,7 +101,8 @@ const Navbar = () => {
         <div className="flex items-center gap-3">
           {/* CTA Desktop */}
           <a
-            href="#contact"
+            href="/cv.pdf"
+            target="_blank"
             className="
               hidden lg:flex
               px-5 py-2.5
@@ -113,7 +114,7 @@ const Navbar = () => {
               font-medium
             "
           >
-            Hire Me
+            Unduh CV
           </a>
 
           {/* Mobile Button */}
@@ -181,7 +182,7 @@ const Navbar = () => {
             </ul>
 
             <a
-              href="#contact"
+              href="/cv.pdf"
               onClick={() => setMenuOpen(false)}
               className="
                 mt-5
@@ -195,7 +196,7 @@ const Navbar = () => {
                 transition
               "
             >
-              Hire Me
+              Unduh CV
             </a>
           </div>
         </div>

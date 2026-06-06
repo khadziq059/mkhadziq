@@ -20,8 +20,6 @@ const education = [
   {
     name: 'SMP Negeri 6 Pekalongan',
     detail: '2016 – 2019',
-    badge: 'Nilai 90',
-    badgeColor: 'bg-amber-900/50 text-amber-300',
     dotColor: 'bg-amber-400',
   },
   {
@@ -37,11 +35,12 @@ export default function App() {
       {/* Hero */}
       <div className="absolute top-20 left-10 w-72 h-72 bg-violet-700/20 rounded-full blur-3xl pointer-events-none" /> 
       <div className="absolute bottom-10 right-10 w-72 h-72 bg-blue-700/20 rounded-full blur-3xl pointer-events-none" />
+            <div className="animate__animated animate__fadeInUp animate__delay-2s">
       <div className="hero mt-32 grid md:grid-cols-10 items-center xl:gap-0 gap-6 grid-cols-1">
         <div className="col-span-6 ml-5">
           <div className="flex items-center gap-3 mb-6 bg-zinc-800 w-fit p-3 rounded-2xl">
             <img src={DataImage.HeroImage2} alt="Hero Image" className="w-10 rounded-md" />
-            <q>Building Digital Solutions Through Technology</q>
+            <p><i className="ri-map-pin-line">&nbsp;</i>Pekalongan - Jawa Tengah, Indonesia</p>
           </div>
           <div className="flex flex-col gap-1">
             <h2 className="text-5xl md:text-6xl font-bold text-zinc-200">
@@ -65,6 +64,7 @@ export default function App() {
         <div className="col-span-4 ml-10">
           <img src={DataImage.HeroImage} alt="Hero Image" className="w-full max-w-[400px] mx-auto lg:mx-0" />
         </div>
+      </div>
       </div>
 
       <div className="mt-28 py-10" id="about">
@@ -157,7 +157,7 @@ export default function App() {
 
       <div className="tools mt-16 py-10" id="tools">
         <h1 className="text-center text-3xl/snug font-bold mb-4">Tools yang dikuasai</h1>
-        <p className="text-center xl:w-2/5 lg:w-3/5 md:w-4/5 sm:w-full text-base/loose opacity-50 mb-8">
+        <p className="text-center text-base/loose opacity-50 mb-8">
           Berikut adalah tools yang saat ini saya kuasai:
         </p>
         <div className="tool-box grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
@@ -240,145 +240,145 @@ export default function App() {
       </div>
       
       {/* Kontak */}
-<div className="mt-28 py-10" id="contact">
+      <div className="mt-28 py-10" id="contact">
 
-  {/* Header */}
-  <div className="mb-12 text-center">
-    <p className="text-xs uppercase tracking-widest text-zinc-500 mb-2">Get in Touch</p>
-    <h2 className="text-3xl font-bold text-white">Kontak</h2>
-    <div className="w-12 h-1 bg-violet-600 rounded-full mt-3 mb-4 mx-auto" />
-    <p className="text-zinc-400 text-base max-w-md mx-auto">
-      Punya pertanyaan atau ingin berkolaborasi? Kirim pesan dan saya akan segera membalas.
-    </p>
-  </div>
-
-  <div className="max-w-5xl mx-auto grid md:grid-cols-5 gap-8">
-
-    {/* Info Kiri */}
-    <div className="md:col-span-2 flex flex-col gap-6">
-
-      {[
-        {
-          icon: "ri-mail-line",
-          label: "Email",
-          value: "muhammadkhadziq26@gmail.com",
-          href: "mailto:muhammadkhadziq26@gmail.com",
-        },
-        {
-          icon: "ri-linkedin-box-line",
-          label: "LinkedIn",
-          value: "Muhammad Khadziq",
-          href: "#",
-        },
-        {
-          icon: "ri-github-line",
-          label: "GitHub",
-          value: "github.com/khadziq",
-          href: "#",
-        },
-      ].map(({ icon, label, value, href }) => (
-        <a
-          key={label}
-          href={href}
-          className="flex items-start gap-4 p-4 bg-zinc-900 border border-zinc-800 rounded-2xl hover:border-violet-500/50 transition-all duration-200 group"
-        >
-          <div className="w-10 h-10 bg-violet-600/10 border border-violet-500/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-violet-600/20 transition-colors">
-            <i className={`${icon} ri-lg text-violet-400`} />
-          </div>
-          <div>
-            <p className="text-xs text-zinc-500 uppercase tracking-wider mb-0.5">{label}</p>
-            <p className="text-sm text-zinc-300 group-hover:text-white transition-colors break-all">{value}</p>
-          </div>
-        </a>
-      ))}
-
-      {/* Availability badge */}
-      <div className="flex items-center gap-3 p-4 bg-emerald-950/40 border border-emerald-800/40 rounded-2xl">
-        <span className="relative flex h-2.5 w-2.5">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
-        </span>
-        <p className="text-sm text-emerald-400">Tersedia untuk proyek baru</p>
-      </div>
-    </div>
-
-    {/* Form Kanan */}
-    <form
-      action="https://formsubmit.co/krazyciller59@gmail.com"
-      method="POST"
-      autoComplete="off"
-      className="md:col-span-3 bg-zinc-900 border border-zinc-800 rounded-2xl p-8 flex flex-col gap-5"
-    >
-      <input type="hidden" name="_captcha" value="false" />
-      <input type="hidden" name="_template" value="table" />
-
-      <div className="grid sm:grid-cols-2 gap-5">
-        <div className="flex flex-col gap-2">
-          <label className="text-xs font-medium text-zinc-400 uppercase tracking-wider" htmlFor="nama">
-            Nama
-          </label>
-          <input
-            type="text"
-            id="nama"
-            name="nama"
-            placeholder="Nama kamu"
-            required
-            className="bg-zinc-800 border border-zinc-700 focus:border-violet-500 focus:outline-none text-white placeholder-zinc-500 text-sm px-4 py-3 rounded-xl transition-colors"
-          />
+        {/* Header */}
+        <div className="mb-12 text-center">
+          <p className="text-xs uppercase tracking-widest text-zinc-500 mb-2">Get in Touch</p>
+          <h2 className="text-3xl font-bold text-white">Kontak</h2>
+          <div className="w-12 h-1 bg-violet-600 rounded-full mt-3 mb-4 mx-auto" />
+          <p className="text-zinc-400 text-base max-w-md mx-auto">
+            Punya pertanyaan atau ingin berkolaborasi? Kirim pesan dan saya akan segera membalas.
+          </p>
         </div>
-        <div className="flex flex-col gap-2">
-          <label className="text-xs font-medium text-zinc-400 uppercase tracking-wider" htmlFor="email">
-            Email
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="email@kamu.com"
-            required
-            className="bg-zinc-800 border border-zinc-700 focus:border-violet-500 focus:outline-none text-white placeholder-zinc-500 text-sm px-4 py-3 rounded-xl transition-colors"
-          />
+
+        <div className="max-w-5xl mx-auto grid md:grid-cols-5 gap-8">
+
+          {/* Info Kiri */}
+          <div className="md:col-span-2 flex flex-col gap-6">
+
+            {[
+              {
+                icon: "ri-mail-line",
+                label: "Email",
+                value: "muhammadkhadziq26@gmail.com",
+                href: "mailto:muhammadkhadziq26@gmail.com",
+              },
+              {
+                icon: "ri-linkedin-box-line",
+                label: "LinkedIn",
+                value: "Muhammad Khadziq",
+                href: "https://www.linkedin.com/in/muhammad-khadziq/",
+              },
+              {
+                icon: "ri-github-line",
+                label: "GitHub",
+                value: "github.com/khadziq",
+                href: "https://github.com/khadziq059",
+              },
+            ].map(({ icon, label, value, href }) => (
+              <a
+                key={label}
+                href={href}
+                className="flex items-start gap-4 p-4 bg-zinc-900 border border-zinc-800 rounded-2xl hover:border-violet-500/50 transition-all duration-200 group"
+              >
+                <div className="w-10 h-10 bg-violet-600/10 border border-violet-500/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-violet-600/20 transition-colors">
+                  <i className={`${icon} ri-lg text-violet-400`} />
+                </div>
+                <div>
+                  <p className="text-xs text-zinc-500 uppercase tracking-wider mb-0.5">{label}</p>
+                  <p className="text-sm text-zinc-300 group-hover:text-white transition-colors break-all">{value}</p>
+                </div>
+              </a>
+            ))}
+
+            {/* Availability badge */}
+            <div className="flex items-center gap-3 p-4 bg-emerald-950/40 border border-emerald-800/40 rounded-2xl">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
+              </span>
+              <p className="text-sm text-emerald-400">Tersedia untuk proyek baru</p>
+            </div>
+          </div>
+
+          {/* Form Kanan */}
+          <form
+            action="https://formsubmit.co/krazyciller59@gmail.com"
+            method="POST"
+            autoComplete="off"
+            className="md:col-span-3 bg-zinc-900 border border-zinc-800 rounded-2xl p-8 flex flex-col gap-5"
+          >
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="table" />
+
+            <div className="grid sm:grid-cols-2 gap-5">
+              <div className="flex flex-col gap-2">
+                <label className="text-xs font-medium text-zinc-400 uppercase tracking-wider" htmlFor="nama">
+                  Nama
+                </label>
+                <input
+                  type="text"
+                  id="nama"
+                  name="nama"
+                  placeholder="Nama kamu"
+                  required
+                  className="bg-zinc-800 border border-zinc-700 focus:border-violet-500 focus:outline-none text-white placeholder-zinc-500 text-sm px-4 py-3 rounded-xl transition-colors"
+                />
+              </div>
+              <div className="flex flex-col gap-2">
+                <label className="text-xs font-medium text-zinc-400 uppercase tracking-wider" htmlFor="email">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="email@kamu.com"
+                  required
+                  className="bg-zinc-800 border border-zinc-700 focus:border-violet-500 focus:outline-none text-white placeholder-zinc-500 text-sm px-4 py-3 rounded-xl transition-colors"
+                />
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <label className="text-xs font-medium text-zinc-400 uppercase tracking-wider" htmlFor="subjek">
+                Subjek
+              </label>
+              <input
+                type="text"
+                id="subjek"
+                name="subjek"
+                placeholder="Topik pesan kamu"
+                className="bg-zinc-800 border border-zinc-700 focus:border-violet-500 focus:outline-none text-white placeholder-zinc-500 text-sm px-4 py-3 rounded-xl transition-colors"
+              />
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <label className="text-xs font-medium text-zinc-400 uppercase tracking-wider" htmlFor="pesan">
+                Pesan
+              </label>
+              <textarea
+                id="pesan"
+                name="pesan"
+                rows={6}
+                placeholder="Tuliskan pesanmu di sini..."
+                required
+                className="bg-zinc-800 border border-zinc-700 focus:border-violet-500 focus:outline-none text-white placeholder-zinc-500 text-sm px-4 py-3 rounded-xl transition-colors resize-none"
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="mt-1 flex items-center justify-center gap-2 bg-violet-600 hover:bg-violet-500 text-white text-sm font-medium px-6 py-3 rounded-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-violet-700/30"
+            >
+              <i className="ri-send-plane-line ri-lg" />
+              Kirim Pesan
+            </button>
+          </form>
+
         </div>
       </div>
-
-      <div className="flex flex-col gap-2">
-        <label className="text-xs font-medium text-zinc-400 uppercase tracking-wider" htmlFor="subjek">
-          Subjek
-        </label>
-        <input
-          type="text"
-          id="subjek"
-          name="subjek"
-          placeholder="Topik pesan kamu"
-          className="bg-zinc-800 border border-zinc-700 focus:border-violet-500 focus:outline-none text-white placeholder-zinc-500 text-sm px-4 py-3 rounded-xl transition-colors"
-        />
-      </div>
-
-      <div className="flex flex-col gap-2">
-        <label className="text-xs font-medium text-zinc-400 uppercase tracking-wider" htmlFor="pesan">
-          Pesan
-        </label>
-        <textarea
-          id="pesan"
-          name="pesan"
-          rows={6}
-          placeholder="Tuliskan pesanmu di sini..."
-          required
-          className="bg-zinc-800 border border-zinc-700 focus:border-violet-500 focus:outline-none text-white placeholder-zinc-500 text-sm px-4 py-3 rounded-xl transition-colors resize-none"
-        />
-      </div>
-
-      <button
-        type="submit"
-        className="mt-1 flex items-center justify-center gap-2 bg-violet-600 hover:bg-violet-500 text-white text-sm font-medium px-6 py-3 rounded-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-violet-700/30"
-      >
-        <i className="ri-send-plane-line ri-lg" />
-        Kirim Pesan
-      </button>
-    </form>
-
-  </div>
-</div>
     </>
   );
 }
