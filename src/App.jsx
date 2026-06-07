@@ -1,6 +1,9 @@
+import { Link } from "react-router-dom";
 import DataImage from "./data"
 import { listTools } from "./data"
 import { listProyek } from "./data"
+import { listSertifikat } from "./data"
+import { useState } from "react";
 
 const education = [
   {
@@ -30,6 +33,8 @@ const education = [
 ];
 
 export default function App() {
+  const [showSertifikat, setShowSertifikat] = useState(false);
+  const [activeSertif, setActiveSertif] = useState(null);
   return (
     <>
       {/* Hero */}
@@ -96,22 +101,15 @@ export default function App() {
               Terbiasa bekerja secara mandiri maupun kolaboratif, dengan semangat belajar yang tinggi dan komitmen untuk terus berkembang serta memberikan kontribusi positif.
             </p>
 
-            {/* Highlight */}
-            <div className="grid grid-cols-3 gap-4 mt-8">
-              <div className="bg-zinc-800 rounded-xl p-4 text-center">
-                <h4 className="text-2xl font-bold text-violet-400">3+</h4>
-                <p className="text-xs text-zinc-400 mt-1">Tahun Belajar</p>
-              </div>
-
-              <div className="bg-zinc-800 rounded-xl p-4 text-center">
-                <h4 className="text-2xl font-bold text-violet-400">10+</h4>
-                <p className="text-xs text-zinc-400 mt-1">Proyek</p>
-              </div>
-
-              <div className="bg-zinc-800 rounded-xl p-4 text-center">
-                <h4 className="text-2xl font-bold text-violet-400">3.80</h4>
-                <p className="text-xs text-zinc-400 mt-1">IPK</p>
-              </div>
+            {/* Sertifikat Button */}
+            <div className="mt-8">
+              <button
+                onClick={() => setShowSertifikat(true)}
+                className="flex items-center justify-center gap-2 w-full bg-violet-600 hover:bg-violet-500 text-white text-sm font-medium px-5 py-3 rounded-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-violet-700/30"
+              >
+                <i className="ri-award-line ri-lg" />
+                Lihat Sertifikat Saya
+              </button>
             </div>
           </div>
 
@@ -224,15 +222,25 @@ export default function App() {
                 </div>
                 <div className="flex-1" />
                 {/* CTA */}
-                <a
-                  href="http://queasy.site.je/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-3 flex items-center justify-center gap-2 bg-violet-600 hover:bg-violet-500 text-white text-sm font-medium px-4 py-2.5 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-violet-700/30"
-                >
-                  Lihat Proyek
-                  <i className="ri-arrow-right-up-line ri-lg" />
-                </a>
+                {proyek.slug ? (
+                  <Link
+                    to={`/proyek/${proyek.slug}`}
+                    className="mt-3 flex items-center justify-center gap-2 bg-violet-600 hover:bg-violet-500 text-white text-sm font-medium px-4 py-2.5 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-violet-700/30"
+                  >
+                    Lihat Detail
+                    <i className="ri-arrow-right-line ri-lg" />
+                  </Link>
+                ) : (
+                  <a
+                    href={proyek.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-3 flex items-center justify-center gap-2 bg-violet-600 hover:bg-violet-500 text-white text-sm font-medium px-4 py-2.5 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-violet-700/30"
+                  >
+                    Lihat Proyek
+                    <i className="ri-arrow-right-up-line ri-lg" />
+                  </a>
+                )}
               </div>
             </div>
           ))}
@@ -379,6 +387,117 @@ export default function App() {
 
         </div>
       </div>
+
+      {/* Modal Sertifikat */}
+      {showSertifikat && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm px-4"
+          onClick={() => setShowSertifikat(false)}
+        >
+          <div
+            className="bg-zinc-900 border border-zinc-700 rounded-2xl w-full max-w-4xl max-h-[85vh] overflow-y-auto p-8"
+            onClick={e => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="flex items-center justify-between mb-8">
+              <div>
+                <p className="text-violet-400 uppercase tracking-[0.3em] text-xs mb-1">Pencapaian</p>
+                <h2 className="text-2xl font-bold text-white">Sertifikat</h2>
+              </div>
+              <button
+                onClick={() => setShowSertifikat(false)}
+                className="w-9 h-9 flex items-center justify-center bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 rounded-xl text-zinc-400 hover:text-white transition-colors"
+              >
+                <i className="ri-close-line ri-lg" />
+              </button>
+            </div>
+
+            {/* Grid */}
+            <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
+              {listSertifikat.map((sertif) => (
+                <div
+                  key={sertif.id}
+                  className="group flex flex-col bg-zinc-800 border border-zinc-700 rounded-2xl overflow-hidden hover:border-violet-500/50 transition-all duration-300"
+                >
+                  {/* Image */}
+                  <div
+                    className="relative overflow-hidden h-40 cursor-zoom-in"
+                    onClick={() => setActiveSertif(sertif)}
+                  >
+                    <img
+                      src={sertif.gambar}
+                      alt={sertif.nama}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-transparent to-transparent" />
+                    {/* Zoom hint */}
+                    <div className="absolute top-2 right-2 bg-black/50 rounded-lg px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
+                      <i className="ri-zoom-in-line text-xs text-white" />
+                      <span className="text-xs text-white">Zoom</span>
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-4 flex flex-col gap-2 flex-1">
+                    <h3 className="text-sm font-semibold text-white leading-snug">{sertif.nama}</h3>
+                    <div className="flex items-center justify-between mt-auto pt-2">
+                      <span className={`text-xs px-2.5 py-1 rounded-md font-medium ${sertif.platformColor}`}>
+                        {sertif.platform}
+                      </span>
+                      <span className="text-xs text-zinc-500">{sertif.tahun}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+      {/* Lightbox */}
+      {activeSertif && (
+        <div
+          className="fixed inset-0 z-[60] flex flex-col items-center justify-center bg-black/90 backdrop-blur-md px-4"
+          onClick={() => setActiveSertif(null)}
+        >
+          {/* Header */}
+          <div
+            className="w-full max-w-4xl flex items-center justify-between mb-4"
+            onClick={e => e.stopPropagation()}
+          >
+            <div>
+              <h3 className="text-white font-semibold text-sm">{activeSertif.nama}</h3>
+              <div className="flex items-center gap-2 mt-1">
+                <span className={`text-xs px-2 py-0.5 rounded-md font-medium ${activeSertif.platformColor}`}>
+                  {activeSertif.platform}
+                </span>
+                <span className="text-xs text-zinc-500">{activeSertif.tahun}</span>
+              </div>
+            </div>
+            <button
+              onClick={() => setActiveSertif(null)}
+              className="w-9 h-9 flex items-center justify-center bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 rounded-xl text-zinc-400 hover:text-white transition-colors"
+            >
+              <i className="ri-close-line ri-lg" />
+            </button>
+          </div>
+
+          {/* Image */}
+          <div
+            className="w-full max-w-4xl rounded-2xl overflow-hidden"
+            onClick={e => e.stopPropagation()}
+          >
+            <img
+              src={activeSertif.gambar}
+              alt={activeSertif.nama}
+              className="w-full h-auto max-h-[75vh] object-contain rounded-2xl"
+            />
+          </div>
+
+          <p className="text-zinc-600 text-xs mt-4">Klik di luar gambar untuk menutup</p>
+        </div>
+      )}
     </>
   );
 }
