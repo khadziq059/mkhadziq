@@ -9,7 +9,7 @@ import Footer from "./components/footer.jsx";
 import Preloader from "./components/preLoader.jsx";
 
 import App from "./App.jsx";
-import DetailProyek from "./DetailProyek.jsx";
+import DetailProyek from "./detailProyek.jsx";
 
 import "remixicon/fonts/remixicon.css";
 import "animate.css";
