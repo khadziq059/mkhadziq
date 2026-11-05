@@ -1,107 +1,205 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import DataImage from "./data"
-import { listTools } from "./data"
-import { listProyek } from "./data"
-import { listSertifikat } from "./data"
-import { useState } from "react";
+import DataImage, { listTools, listProyek, listSertifikat } from "./data";
 
 const education = [
   {
-    name: 'Universitas Jenderal Soedirman',
-    detail: 'S1 Informatika · 2022 – 2026',
-    badge: 'IPK 3,80',
-    badgeColor: 'bg-violet-900/50 text-violet-300',
-    dotColor: 'bg-violet-400',
+    name: "Universitas Jenderal Soedirman",
+    detail: "S1 Informatika · 2022 – 2026 · IPK 3,79",
+    badge: "Cum Laude",
+    badgeColor: "bg-violet-900/50 text-violet-300",
+    dotColor: "bg-violet-400",
   },
   {
-    name: 'SMA Negeri 4 Pekalongan',
-    detail: 'Jurusan IPA · 2019 – 2022',
-    badge: 'Nilai 91,56',
-    badgeColor: 'bg-emerald-900/50 text-emerald-300',
-    dotColor: 'bg-emerald-400',
+    name: "SMA Negeri 4 Pekalongan",
+    detail: "Jurusan IPA · 2019 – 2022",
+    dotColor: "bg-emerald-400",
   },
   {
-    name: 'SMP Negeri 6 Pekalongan',
-    detail: '2016 – 2019',
-    dotColor: 'bg-amber-400',
+    name: "SMP Negeri 6 Pekalongan",
+    detail: "2016 – 2019",
+    dotColor: "bg-amber-400",
   },
   {
-    name: 'SD Negeri Kuripan Lor 01',
-    detail: '2010 – 2016',
-    dotColor: 'bg-pink-400',
+    name: "SD Negeri Kuripan Lor 01",
+    detail: "2010 – 2016",
+    dotColor: "bg-pink-400",
   },
 ];
+
+const experience = [
+  {
+    role: "Magang Pengembangan Sistem & Administrasi Data",
+    org: "BPS Kota Pekalongan",
+    period: "Juli – Agustus 2024",
+    points: [
+      "Membangun SIMBA, sistem manajemen inventaris berbasis web (Laravel, MySQL) untuk mencatat barang masuk dan keluar.",
+      "Menambahkan perhitungan inventaris bulanan otomatis dan laporan yang dapat diunduh untuk mendukung pelaporan keuangan.",
+      "Membantu pengelolaan data sub bagian umum: migrasi dan validasi data serta instalasi printer dan scanner.",
+    ],
+    dotColor: "bg-violet-400",
+  },
+  {
+    role: "Divisi PDD (Publikasi, Dokumentasi, dan Desain)",
+    org: "KKN Unsoed, Desa Jladri, Kebumen",
+    points: [
+      "Membuat materi visual dan dokumentasi berkala seluruh program pemberdayaan masyarakat.",
+      "Mengelola konten media sosial dan publikasi kegiatan secara terstruktur.",
+    ],
+    dotColor: "bg-emerald-400",
+  },
+];
+
+const contactLinks = [
+  {
+    icon: "ri-mail-line",
+    label: "Email",
+    value: "muhammadkhadziq26@gmail.com",
+    href: "mailto:muhammadkhadziq26@gmail.com",
+  },
+  {
+    icon: "ri-linkedin-box-line",
+    label: "LinkedIn",
+    value: "Muhammad Khadziq",
+    href: "https://www.linkedin.com/in/muhammad-khadziq/",
+    external: true,
+  },
+  {
+    icon: "ri-github-line",
+    label: "GitHub",
+    value: "github.com/khadziq059",
+    href: "https://github.com/khadziq059",
+    external: true,
+  },
+];
+
+const hasLink = (url) => Boolean(url) && url !== "#";
+
+function SectionHeader({ label, title, desc }) {
+  return (
+    <div className="mb-12 text-center">
+      <p className="text-violet-400 uppercase tracking-[0.3em] text-sm mb-3">{label}</p>
+      <h2 className="text-4xl font-bold text-white">{title}</h2>
+      <div className="mx-auto w-24 h-1 bg-violet-600 rounded-full mt-3 mb-4" />
+      {desc && <p className="text-zinc-400 text-base max-w-md mx-auto">{desc}</p>}
+    </div>
+  );
+}
 
 export default function App() {
   const [showSertifikat, setShowSertifikat] = useState(false);
   const [activeSertif, setActiveSertif] = useState(null);
+  const [showAllProjects, setShowAllProjects] = useState(false);
+
+  // Tutup modal/lightbox dengan tombol Esc
+  useEffect(() => {
+    const onKeyDown = (e) => {
+      if (e.key !== "Escape") return;
+      if (activeSertif) setActiveSertif(null);
+      else if (showSertifikat) setShowSertifikat(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [activeSertif, showSertifikat]);
+
+  // Kunci scroll halaman saat modal terbuka
+  useEffect(() => {
+    document.body.style.overflow = showSertifikat || activeSertif ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [showSertifikat, activeSertif]);
+
   return (
     <>
       {/* Hero */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-violet-700/20 rounded-full blur-3xl pointer-events-none" /> 
-      <div className="absolute bottom-10 right-10 w-72 h-72 bg-blue-700/20 rounded-full blur-3xl pointer-events-none" />
-            <div className="animate__animated animate__fadeInUp animate__delay-2s">
-      <div className="hero mt-32 grid md:grid-cols-10 items-center xl:gap-0 gap-6 grid-cols-1">
-        <div className="col-span-6 ml-5">
-          <div className="flex items-center gap-3 mb-6 bg-zinc-800 w-fit p-3 rounded-2xl">
-            <img src={DataImage.HeroImage2} alt="Hero Image" className="w-10 rounded-md" />
-            <p><i className="ri-map-pin-line">&nbsp;</i>Pekalongan - Jawa Tengah, Indonesia</p>
-          </div>
-          <div className="flex flex-col gap-1">
-            <h2 className="text-5xl md:text-6xl font-bold text-zinc-200">
-              Halo 👋,
-            </h2>
-            <h1 className="text-5xl md:text-6xl font-bold">
-              Aku{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-violet-600">
-                Muhammad Khadziq
-              </span>
-            </h1>
-          </div>
-          <p className="text-lg mt-5 mb-6 mr-5">
-            Mahasiswa S1 Informatika Universitas Jenderal Soedirman. <br />
-            Tertarik pada pengembangan perangkat lunak, machine learning, dan inovasi teknologi.
-          </p>
-          <button className="bg-violet-600 hover:bg-violet-500 text-white text-sm font-medium px-6 py-3 rounded-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-violet-700/30">
-            <a href="#projects">Lihat Proyek</a>
-          </button>
-        </div>
-        <div className="col-span-4 ml-10">
-          <img src={DataImage.HeroImage} alt="Hero Image" className="w-full max-w-[400px] mx-auto lg:mx-0" />
-        </div>
-      </div>
-      </div>
+      <section className="relative overflow-hidden">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-violet-700/20 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-10 right-10 w-72 h-72 bg-blue-700/20 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="mt-28 py-10" id="about">
-        <p className="text-center text-violet-400 uppercase tracking-[0.3em] text-sm mb-3">
-          Tentang Saya
-        </p>
+        <div className="animate__animated animate__fadeInUp animate__delay-2s">
+          <div className="hero mt-32 grid md:grid-cols-10 items-center xl:gap-0 gap-6 grid-cols-1">
+            <div className="md:col-span-6 mx-5 md:mr-0">
+              <div className="flex items-center gap-3 mb-6 bg-zinc-800 w-fit p-3 rounded-2xl">
+                <img
+                  src={DataImage.HeroImage2}
+                  alt="Foto profil Muhammad Khadziq"
+                  className="w-10 rounded-md"
+                />
+                <p>
+                  <i className="ri-map-pin-line">&nbsp;</i>Pekalongan - Jawa Tengah, Indonesia
+                </p>
+              </div>
 
-        <h2 className="text-center text-4xl font-bold mb-12">
-          Mengenal Saya Lebih Dekat
-        </h2>
+              <div className="flex flex-col gap-1">
+                <p className="text-5xl md:text-6xl font-bold text-zinc-200">Halo 👋,</p>
+                <h1 className="text-5xl md:text-6xl font-bold">
+                  Aku{" "}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-violet-600">
+                    Muhammad Khadziq
+                  </span>
+                </h1>
+              </div>
+
+              <p className="text-lg mt-5 mb-6 mr-5">
+                Lulusan S1 Informatika Universitas Jenderal Soedirman. <br />
+                Berpengalaman membangun aplikasi web dan mobile (Laravel, React, Flutter, FastAPI),
+                dengan minat pada full-stack development dan inovasi teknologi.
+              </p>
+
+              <div className="flex flex-wrap gap-3">
+                <a
+                  href="#projects"
+                  className="bg-violet-600 hover:bg-violet-500 text-white text-sm font-medium px-6 py-3 rounded-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-violet-700/30"
+                >
+                  Lihat Proyek
+                </a>
+                <a
+                  href="/cv/CV_Muhammad_Khadziq.pdf"
+                  download
+                  className="flex items-center gap-2 border border-violet-500/50 hover:bg-violet-600 text-violet-300 hover:text-white text-sm font-medium px-6 py-3 rounded-xl transition-all duration-200 hover:-translate-y-0.5"
+                >
+                  <i className="ri-download-2-line" />
+                  Unduh CV
+                </a>
+              </div>
+            </div>
+
+            <div className="md:col-span-4 mx-5 md:ml-10">
+              <img
+                src={DataImage.HeroImage}
+                alt="Ilustrasi hero"
+                decoding="async"
+                className="w-full max-w-[400px] mx-auto lg:mx-0"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Tentang */}
+      <section className="mt-28 py-10" id="about">
+        <SectionHeader label="Tentang Saya" title="Mengenal Saya Lebih Dekat" />
 
         <div className="grid lg:grid-cols-2 gap-8">
-          
           {/* Bio */}
           <div className="bg-zinc-900 border border-zinc-400 rounded-3xl p-8">
-            <h3 className="text-xl font-semibold mb-5">
-              Latar Belakang Singkat
-            </h3>
+            <h3 className="text-xl font-semibold mb-5">Latar Belakang Singkat</h3>
 
             <p className="text-zinc-300 leading-relaxed text-justify">
-              Saya merupakan mahasiswa S1 Informatika Universitas Jenderal
-              Soedirman yang memiliki minat pada pengembangan perangkat lunak,
-              machine learning, dan teknologi digital. Saya senang mempelajari
-              teknologi baru serta mengembangkan solusi yang bermanfaat melalui
-              pemrograman dan inovasi digital.
+              Lulusan S1 Informatika Universitas Jenderal Soedirman (Cum Laude, IPK 3,79) dengan minat
+              pada software engineering, khususnya pengembangan web full-stack dan aplikasi mobile.
+              Saya telah membangun sistem inventaris berbasis web di BPS Kota Pekalongan, memperoleh
+              HAKI untuk aplikasi kuis Queasy, dan mengembangkan MBatiC, aplikasi klasifikasi batik
+              berbasis CNN dengan akurasi 84,75% sebagai tugas akhir.
             </p>
 
             <p className="text-zinc-300 leading-relaxed text-justify mt-4">
-              Terbiasa bekerja secara mandiri maupun kolaboratif, dengan semangat belajar yang tinggi dan komitmen untuk terus berkembang serta memberikan kontribusi positif.
+              Terbiasa berkolaborasi menggunakan Git, mengelola proyek dari perancangan hingga
+              integrasi API dan database, serta cepat mempelajari teknologi baru sesuai kebutuhan
+              proyek.
             </p>
 
-            {/* Sertifikat Button */}
             <div className="mt-8">
               <button
                 onClick={() => setShowSertifikat(true)}
@@ -115,27 +213,19 @@ export default function App() {
 
           {/* Pendidikan */}
           <div className="bg-zinc-900 border border-zinc-400 rounded-3xl p-8">
-            <h3 className="text-xl font-semibold mb-6">
-              Riwayat Pendidikan
-            </h3>
+            <h3 className="text-xl font-semibold mb-6">Riwayat Pendidikan</h3>
 
             <div className="space-y-6">
               {education.map((item, i) => (
-                <div key={i} className="flex gap-4">
+                <div key={item.name} className="flex gap-4">
                   <div className="flex flex-col items-center">
-                    <div
-                      className={`w-3 h-3 rounded-full ${item.dotColor}`}
-                    />
-                    {i < education.length - 1 && (
-                      <div className="w-px h-16 bg-zinc-700 mt-2" />
-                    )}
+                    <div className={`w-3 h-3 rounded-full ${item.dotColor}`} />
+                    {i < education.length - 1 && <div className="w-px h-16 bg-zinc-700 mt-2" />}
                   </div>
 
                   <div>
                     <h4 className="font-medium">{item.name}</h4>
-                    <p className="text-sm text-zinc-400">
-                      {item.detail}
-                    </p>
+                    <p className="text-sm text-zinc-400">{item.detail}</p>
 
                     {item.badge && (
                       <span
@@ -149,57 +239,86 @@ export default function App() {
               ))}
             </div>
           </div>
-
         </div>
-      </div>
+      </section>
 
-      <div className="tools mt-16 py-10" id="tools">
-        <h1 className="text-center text-3xl/snug font-bold mb-4">Tools yang dikuasai</h1>
-        <p className="text-center text-base/loose opacity-50 mb-8">
-          Berikut adalah tools yang saat ini saya kuasai:
-        </p>
+      {/* Pengalaman */}
+      <section className="mt-16 py-10" id="experience">
+        <SectionHeader label="Pengalaman" title="Pengalaman & Kepemimpinan" />
+
+        <div className="max-w-3xl mx-auto space-y-6">
+          {experience.map((item) => (
+            <div
+              key={item.role}
+              className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 hover:border-violet-500/50 transition-colors duration-300"
+            >
+              <div className="flex items-start gap-3">
+                <div className={`w-3 h-3 rounded-full mt-2 flex-shrink-0 ${item.dotColor}`} />
+                <div className="flex-1">
+                  <div className="flex flex-wrap items-baseline justify-between gap-x-4">
+                    <h3 className="text-lg font-semibold text-white">{item.role}</h3>
+                    {item.period && <span className="text-xs text-zinc-500">{item.period}</span>}
+                  </div>
+                  <p className="text-sm text-violet-300 mb-3">{item.org}</p>
+                  <ul className="list-disc list-outside pl-5 space-y-1.5 text-sm text-zinc-400 leading-relaxed">
+                    {item.points.map((point) => (
+                      <li key={point}>{point}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Tools */}
+      <section className="tools mt-16 py-10" id="tools">
+        <SectionHeader
+          label="Skill"
+          title="Tools yang Dikuasai"
+          desc="Berikut adalah tools yang saat ini saya kuasai:"
+        />
+
         <div className="tool-box grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
           {listTools.map((tool) => (
-            <div className="flex items-center gap-2 p-3 border border-zinc-600 rounded-md hover:bg-zinc-800 group" key={tool.id}>
-            <img src={tool.gambar} alt="Tools Image" className="w-14 bg-zinc-900 p-1 group-hover:bg-zinc-900" />
+            <div
+              className="flex items-center gap-2 p-3 border border-zinc-600 rounded-md hover:bg-zinc-800 group"
+              key={tool.id}
+            >
+              <img
+                src={tool.gambar}
+                alt={tool.nama}
+                loading="lazy"
+                className="w-14 bg-zinc-900 p-1 group-hover:bg-zinc-900"
+              />
               <div>
                 <h4>{tool.nama}</h4>
                 <p className="opacity-50">{tool.ket}</p>
               </div>
-          </div>
+            </div>
           ))}
         </div>
-      </div>
+      </section>
 
       {/* Proyek */}
-      <div className="mt-20 py-10" id="projects">
+      <section className="mt-20 py-10" id="projects">
+        <SectionHeader label="Portfolio" title="Proyek Saya" />
 
-        {/* Header */}
-        <div className="mb-12">
-          <p className="text-center text-violet-400 uppercase tracking-[0.3em] text-sm mb-3">Portfolio</p>
-          <h2 className="text-center text-4xl font-bold text-white">Proyek Saya</h2>
-          <div className="mx-auto w-40 h-1 bg-violet-600 rounded-full mt-3 mb-4" />
-        </div>
-
-        {/* Grid */}
         <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6">
-          {listProyek.map((proyek) => (
+          {(showAllProjects ? listProyek : listProyek.slice(0, 6)).map((proyek) => (
             <div
               key={proyek.id}
-              className="group flex flex-col bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden hover:border-violet-500/50 transition-all duration-300"
-              style={{ willChange: 'transform' }}
-              onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-4px)'}
-              onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
+              className="group flex flex-col bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden hover:border-violet-500/50 hover:-translate-y-1 transition-all duration-300"
             >
               {/* Image */}
               <div className="relative overflow-hidden h-48">
                 <img
                   src={proyek.gambar}
                   alt={proyek.nama}
-                  loading="lazy"                
+                  loading="lazy"
                   decoding="async"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  style={{ willChange: 'transform' }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-transparent to-transparent" />
               </div>
@@ -207,20 +326,28 @@ export default function App() {
               {/* Content */}
               <div className="p-6 flex flex-col flex-1 gap-3">
                 <h3 className="text-lg font-semibold text-white">{proyek.nama}</h3>
+
+                {(proyek.peran || proyek.tipe) && (
+                  <p className="text-xs text-violet-300">
+                    {[proyek.tipe, proyek.peran].filter(Boolean).join(" · ")}
+                  </p>
+                )}
+
                 <p className="text-sm text-zinc-400 leading-relaxed line-clamp-3">{proyek.desk}</p>
 
-                {/* Tools */}
                 <div className="flex flex-wrap gap-2 mt-1">
-                  {proyek.tools.map((tool, index) => (
+                  {proyek.tools.map((tool) => (
                     <span
-                      key={index}
+                      key={tool}
                       className="text-xs px-2.5 py-1 bg-zinc-800 border border-zinc-700 text-zinc-300 rounded-md font-medium"
                     >
                       {tool}
                     </span>
                   ))}
                 </div>
+
                 <div className="flex-1" />
+
                 {/* CTA */}
                 {proyek.slug ? (
                   <Link
@@ -231,63 +358,61 @@ export default function App() {
                     <i className="ri-arrow-right-line ri-lg" />
                   </Link>
                 ) : (
-                  <a
-                    href={proyek.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-3 flex items-center justify-center gap-2 bg-violet-600 hover:bg-violet-500 text-white text-sm font-medium px-4 py-2.5 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-violet-700/30"
-                  >
-                    Lihat Proyek
-                    <i className="ri-arrow-right-up-line ri-lg" />
-                  </a>
+                  hasLink(proyek.link) && (
+                    <a
+                      href={proyek.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-3 flex items-center justify-center gap-2 bg-violet-600 hover:bg-violet-500 text-white text-sm font-medium px-4 py-2.5 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-violet-700/30"
+                    >
+                      Lihat Proyek
+                      <i className="ri-arrow-right-up-line ri-lg" />
+                    </a>
+                  )
                 )}
               </div>
             </div>
           ))}
         </div>
-      </div>
-      
-      {/* Kontak */}
-      <div className="mt-28 py-10" id="contact">
 
-        {/* Header */}
-        <div className="mb-12 text-center">
-          <p className="text-xs uppercase tracking-widest text-zinc-500 mb-2">Get in Touch</p>
-          <h2 className="text-3xl font-bold text-white">Kontak</h2>
-          <div className="w-12 h-1 bg-violet-600 rounded-full mt-3 mb-4 mx-auto" />
-          <p className="text-zinc-400 text-base max-w-md mx-auto">
-            Punya pertanyaan atau ingin berkolaborasi? Kirim pesan dan saya akan segera membalas.
-          </p>
-        </div>
+        {listProyek.length > 6 && (
+          <div className="flex justify-center mt-10">
+            <button
+              onClick={() => setShowAllProjects(!showAllProjects)}
+              className="flex items-center gap-2 border border-zinc-700 hover:border-zinc-500 hover:bg-zinc-800 text-zinc-400 hover:text-zinc-200 text-sm font-medium px-6 py-2.5 rounded-xl transition-colors duration-200"
+            >
+              {showAllProjects ? (
+                <>
+                  Tampilkan Lebih Sedikit
+                  <i className="ri-arrow-up-line" />
+                </>
+              ) : (
+                <>
+                  Lihat Semua Proyek
+                  <i className="ri-arrow-down-line" />
+                </>
+              )}
+            </button>
+          </div>
+        )}
+      </section>
+
+      {/* Kontak */}
+      <section className="mt-28 py-10" id="contact">
+        <SectionHeader
+          label="Get in Touch"
+          title="Kontak"
+          desc="Punya pertanyaan atau ingin berkolaborasi? Kirim pesan dan saya akan segera membalas."
+        />
 
         <div className="max-w-5xl mx-auto grid md:grid-cols-5 gap-8">
-
           {/* Info Kiri */}
           <div className="md:col-span-2 flex flex-col gap-6">
-
-            {[
-              {
-                icon: "ri-mail-line",
-                label: "Email",
-                value: "muhammadkhadziq26@gmail.com",
-                href: "mailto:muhammadkhadziq26@gmail.com",
-              },
-              {
-                icon: "ri-linkedin-box-line",
-                label: "LinkedIn",
-                value: "Muhammad Khadziq",
-                href: "https://www.linkedin.com/in/muhammad-khadziq/",
-              },
-              {
-                icon: "ri-github-line",
-                label: "GitHub",
-                value: "github.com/khadziq",
-                href: "https://github.com/khadziq059",
-              },
-            ].map(({ icon, label, value, href }) => (
+            {contactLinks.map(({ icon, label, value, href, external }) => (
               <a
                 key={label}
                 href={href}
+                {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 className="flex items-start gap-4 p-4 bg-zinc-900 border border-zinc-800 rounded-2xl hover:border-violet-500/50 transition-all duration-200 group"
               >
                 <div className="w-10 h-10 bg-violet-600/10 border border-violet-500/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-violet-600/20 transition-colors">
@@ -295,34 +420,47 @@ export default function App() {
                 </div>
                 <div>
                   <p className="text-xs text-zinc-500 uppercase tracking-wider mb-0.5">{label}</p>
-                  <p className="text-sm text-zinc-300 group-hover:text-white transition-colors break-all">{value}</p>
+                  <p className="text-sm text-zinc-300 group-hover:text-white transition-colors break-all">
+                    {value}
+                  </p>
                 </div>
               </a>
             ))}
 
-            {/* Availability badge */}
             <div className="flex items-center gap-3 p-4 bg-emerald-950/40 border border-emerald-800/40 rounded-2xl">
               <span className="relative flex h-2.5 w-2.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
               </span>
-              <p className="text-sm text-emerald-400">Tersedia untuk proyek baru</p>
+              <p className="text-sm text-emerald-400">Terbuka untuk peluang kerja</p>
             </div>
           </div>
 
           {/* Form Kanan */}
           <form
-            action="https://formsubmit.co/krazyciller59@gmail.com"
+            action="https://formsubmit.co/muhammadkhadziq26@gmail.com"
             method="POST"
-            autoComplete="off"
             className="md:col-span-3 bg-zinc-900 border border-zinc-800 rounded-2xl p-8 flex flex-col gap-5"
           >
             <input type="hidden" name="_captcha" value="false" />
             <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_subject" value="Pesan baru dari portofolio" />
+            <input type="hidden" name="_next" value={`${window.location.origin}/#contact`} />
+            {/* Honeypot anti-spam: harus tetap kosong */}
+            <input
+              type="text"
+              name="_honey"
+              style={{ display: "none" }}
+              tabIndex={-1}
+              autoComplete="off"
+            />
 
             <div className="grid sm:grid-cols-2 gap-5">
               <div className="flex flex-col gap-2">
-                <label className="text-xs font-medium text-zinc-400 uppercase tracking-wider" htmlFor="nama">
+                <label
+                  className="text-xs font-medium text-zinc-400 uppercase tracking-wider"
+                  htmlFor="nama"
+                >
                   Nama
                 </label>
                 <input
@@ -330,12 +468,16 @@ export default function App() {
                   id="nama"
                   name="nama"
                   placeholder="Nama kamu"
+                  autoComplete="name"
                   required
                   className="bg-zinc-800 border border-zinc-700 focus:border-violet-500 focus:outline-none text-white placeholder-zinc-500 text-sm px-4 py-3 rounded-xl transition-colors"
                 />
               </div>
               <div className="flex flex-col gap-2">
-                <label className="text-xs font-medium text-zinc-400 uppercase tracking-wider" htmlFor="email">
+                <label
+                  className="text-xs font-medium text-zinc-400 uppercase tracking-wider"
+                  htmlFor="email"
+                >
                   Email
                 </label>
                 <input
@@ -343,6 +485,7 @@ export default function App() {
                   id="email"
                   name="email"
                   placeholder="email@kamu.com"
+                  autoComplete="email"
                   required
                   className="bg-zinc-800 border border-zinc-700 focus:border-violet-500 focus:outline-none text-white placeholder-zinc-500 text-sm px-4 py-3 rounded-xl transition-colors"
                 />
@@ -350,7 +493,10 @@ export default function App() {
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="text-xs font-medium text-zinc-400 uppercase tracking-wider" htmlFor="subjek">
+              <label
+                className="text-xs font-medium text-zinc-400 uppercase tracking-wider"
+                htmlFor="subjek"
+              >
                 Subjek
               </label>
               <input
@@ -363,7 +509,10 @@ export default function App() {
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="text-xs font-medium text-zinc-400 uppercase tracking-wider" htmlFor="pesan">
+              <label
+                className="text-xs font-medium text-zinc-400 uppercase tracking-wider"
+                htmlFor="pesan"
+              >
                 Pesan
               </label>
               <textarea
@@ -384,21 +533,22 @@ export default function App() {
               Kirim Pesan
             </button>
           </form>
-
         </div>
-      </div>
+      </section>
 
       {/* Modal Sertifikat */}
       {showSertifikat && (
         <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Daftar sertifikat"
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm px-4"
           onClick={() => setShowSertifikat(false)}
         >
           <div
             className="bg-zinc-900 border border-zinc-700 rounded-2xl w-full max-w-4xl max-h-[85vh] overflow-y-auto p-8"
-            onClick={e => e.stopPropagation()}
+            onClick={(e) => e.stopPropagation()}
           >
-            {/* Modal Header */}
             <div className="flex items-center justify-between mb-8">
               <div>
                 <p className="text-violet-400 uppercase tracking-[0.3em] text-xs mb-1">Pencapaian</p>
@@ -406,20 +556,19 @@ export default function App() {
               </div>
               <button
                 onClick={() => setShowSertifikat(false)}
+                aria-label="Tutup"
                 className="w-9 h-9 flex items-center justify-center bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 rounded-xl text-zinc-400 hover:text-white transition-colors"
               >
                 <i className="ri-close-line ri-lg" />
               </button>
             </div>
 
-            {/* Grid */}
             <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
               {listSertifikat.map((sertif) => (
                 <div
                   key={sertif.id}
                   className="group flex flex-col bg-zinc-800 border border-zinc-700 rounded-2xl overflow-hidden hover:border-violet-500/50 transition-all duration-300"
                 >
-                  {/* Image */}
                   <div
                     className="relative overflow-hidden h-40 cursor-zoom-in"
                     onClick={() => setActiveSertif(sertif)}
@@ -432,18 +581,18 @@ export default function App() {
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-transparent to-transparent" />
-                    {/* Zoom hint */}
                     <div className="absolute top-2 right-2 bg-black/50 rounded-lg px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
                       <i className="ri-zoom-in-line text-xs text-white" />
                       <span className="text-xs text-white">Zoom</span>
                     </div>
                   </div>
 
-                  {/* Content */}
                   <div className="p-4 flex flex-col gap-2 flex-1">
                     <h3 className="text-sm font-semibold text-white leading-snug">{sertif.nama}</h3>
                     <div className="flex items-center justify-between mt-auto pt-2">
-                      <span className={`text-xs px-2.5 py-1 rounded-md font-medium ${sertif.platformColor}`}>
+                      <span
+                        className={`text-xs px-2.5 py-1 rounded-md font-medium ${sertif.platformColor}`}
+                      >
                         {sertif.platform}
                       </span>
                       <span className="text-xs text-zinc-500">{sertif.tahun}</span>
@@ -455,21 +604,26 @@ export default function App() {
           </div>
         </div>
       )}
+
       {/* Lightbox */}
       {activeSertif && (
         <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={activeSertif.nama}
           className="fixed inset-0 z-[60] flex flex-col items-center justify-center bg-black/90 backdrop-blur-md px-4"
           onClick={() => setActiveSertif(null)}
         >
-          {/* Header */}
           <div
             className="w-full max-w-4xl flex items-center justify-between mb-4"
-            onClick={e => e.stopPropagation()}
+            onClick={(e) => e.stopPropagation()}
           >
             <div>
               <h3 className="text-white font-semibold text-sm">{activeSertif.nama}</h3>
               <div className="flex items-center gap-2 mt-1">
-                <span className={`text-xs px-2 py-0.5 rounded-md font-medium ${activeSertif.platformColor}`}>
+                <span
+                  className={`text-xs px-2 py-0.5 rounded-md font-medium ${activeSertif.platformColor}`}
+                >
                   {activeSertif.platform}
                 </span>
                 <span className="text-xs text-zinc-500">{activeSertif.tahun}</span>
@@ -477,16 +631,16 @@ export default function App() {
             </div>
             <button
               onClick={() => setActiveSertif(null)}
+              aria-label="Tutup"
               className="w-9 h-9 flex items-center justify-center bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 rounded-xl text-zinc-400 hover:text-white transition-colors"
             >
               <i className="ri-close-line ri-lg" />
             </button>
           </div>
 
-          {/* Image */}
           <div
             className="w-full max-w-4xl rounded-2xl overflow-hidden"
-            onClick={e => e.stopPropagation()}
+            onClick={(e) => e.stopPropagation()}
           >
             <img
               src={activeSertif.gambar}
@@ -495,7 +649,7 @@ export default function App() {
             />
           </div>
 
-          <p className="text-zinc-600 text-xs mt-4">Klik di luar gambar untuk menutup</p>
+          <p className="text-zinc-500 text-xs mt-4">Klik di luar gambar atau tekan Esc untuk menutup</p>
         </div>
       )}
     </>

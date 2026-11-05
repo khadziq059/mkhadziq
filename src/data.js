@@ -120,11 +120,43 @@ export const listSertifikat = [
     platform: "Dicoding",
     tahun: "2024",
     platformColor: "bg-blue-900/40 text-blue-300",
-  }
+  },
+  {
+    id: 5,
+    gambar: "/assets/proyek/sertif/sertif2.png",
+    nama: "Hak Kekayaan Intelektual Website 'Queasy'",
+    platform: "DJKI Kemenkumham",
+    tahun: "2025",
+    platformColor: "bg-blue-900/40 text-blue-300",
+  },
+  {
+    id: 6,
+    gambar: "/assets/proyek/sertif/sertif3.png",
+    nama: "Data Science Esentials with Python",
+    platform: "Cisco Networking Academy",
+    tahun: "2026",
+    platformColor: "bg-blue-900/40 text-blue-300",
+  },
+  {
+    id: 7,
+    gambar: "/assets/proyek/sertif/sertif4.png",
+    nama: "Belajar Data Science End to End",
+    platform: "Sinau Jogja",
+    tahun: "2025",
+    platformColor: "bg-blue-900/40 text-blue-300",
+  },
+  {
+    id: 8,
+    gambar: "/assets/proyek/sertif/sertif5.png",
+    nama: "Python Essentials 2",
+    platform: "Cisco Networking Academy",
+    tahun: "2026",
+    platformColor: "bg-blue-900/40 text-blue-300",
+  },
 ];
 
 import Proyek1 from "/assets/proyek/queasy.png";
-import Proyek2 from "/assets/proyek/proyek6.webp";
+import Proyek2 from "/assets/proyek/dokumind/dokumind (2).png";
 import Proyek3 from "/assets/proyek/mbatic.png";
 import Proyek4 from "/assets/proyek/SPPG.png";
 import Proyek5 from "/assets/proyek/qumon.png";
@@ -136,7 +168,8 @@ export const listProyek = [
     slug: "queasy",
     gambar: Proyek1,
     nama: "Queasy",
-    desk: "Aplikasi web kuis interaktif yang dirancang untuk memudahkan proses pembelajaran dan evaluasi. Dilengkapi fitur autentikasi pengguna, leaderboard, manajemen soal, serta panel administrasi untuk pengelolaan sistem.",
+    desk: `Queasy adalah platform kuis berbasis web yang dirancang untuk memberikan pengalaman belajar yang terstruktur dan progresif. Platform ini menerapkan sistem pembelajaran bertahap, di mana pengguna harus menyelesaikan minimal 50% kuis pada kategori sebelumnya untuk membuka akses ke kategori berikutnya.
+    Keunikan Queasy terletak pada penerapan alur cerita (story-driven quiz) yang dipadukan dengan sistem nyawa pada setiap kuis. Pengguna harus menyelesaikan kuis dengan jumlah nyawa yang terbatas. Apabila seluruh nyawa habis, pengguna harus mengulang kuis dari awal.`,
     screenshots: [
       "/assets/proyek/queasy/queasy1.png",
       "/assets/proyek/queasy/queasy2.png",
@@ -150,24 +183,45 @@ export const listProyek = [
       "/assets/proyek/queasy/queasy10.png",
       "/assets/proyek/queasy/queasy11.png",
     ],
-    tools: ["PHP", "MySQL", "Bootstrap", "JavaScript"],
+    tools: ["PHP Native", "HTML5", "CSS3","MySQL", "Bootstrap", "JavaScript"],
     features: [
+      "Sistem Pembelajaran Progresif: Membuka kategori pembelajaran berikutnya setelah menyelesaikan minimal 50% kuis pada kategori sebelumnya.",
+      "Kategori Kuis Beragam: Menyediakan berbagai topik pembelajaran yang dikelompokkan berdasarkan kategori.",
+      "Alur Cerita Interaktif: Menghadirkan pengalaman mengerjakan kuis melalui alur cerita yang terintegrasi.",
+      "Sistem Nyawa: Memberikan jumlah nyawa terbatas pada setiap kuis. Pengguna harus mengulang kuis apabila seluruh nyawa habis.",
+      "Pelacakan Progres: Memantau perkembangan dan pencapaian pengguna dalam menyelesaikan kuis.",
     ],
     github: "https://github.com/ellfataa/Queasy",
     link: "http://queasy.site.je/",
   },
   {
     id: 2,
-    slug: "website-company-profile",
+    slug: "dokumind",
     gambar: Proyek2,
-    nama: "Website Company Profile",
-    desk: "Website company profile modern dengan desain responsif dan optimalisasi pengalaman pengguna.",
+    nama: "Dokumind: Sistem Manajemen Dokumen Berbasis AI",
+    desk: "Aplikasi berbasis web yang memungkinkan pengguna untuk mengunggah dokumen dan berinteraksi dengan kontennya melalui sistem tanya jawab berbasis AI yang menggunakan Large Language Models (LLM) dan Retrieval-Augmented Generation (RAG).",
     screenshots: [
+      "/assets/proyek/dokumind/dokumind (2).png",
+      "/assets/proyek/dokumind/dokumind (3).png",
+      "/assets/proyek/dokumind/dokumind (4).png",
+      "/assets/proyek/dokumind/dokumind (5).png",
+      "/assets/proyek/dokumind/dokumind (6).png",
+      "/assets/proyek/dokumind/dokumind (1).png",
     ],
-    tools: ["HTML", "CSS", "JavaScript"],
+    tools: ["React", "FastAPI", "ChromaDB", "PostgreSQL", "Gemini", "LangChain", "FastEmbed", "Docker", "Tailwind CSS", "JWT"],
     features: [
+      "Upload and manage knowledge documents.",
+      "Process and extract text from uploaded documents.",
+      "Automatically split documents into meaningful text chunks.",
+      "Semantic document retrieval using vector embeddings.",
+      "Rerank retrieved document chunks based on query relevance.",
+      "Ask questions about uploaded documents through an interactive chat interface.",
+      "Generate context-aware answers using Google Gemini.",
+      "Manage chat sessions and conversation history.",
+      "JWT-based user authentication.",
+      "Persistent document and conversation data storage."
     ],
-    github: "https://github.com/khadziq059",
+    github: "https://github.com/DanielAArif/ai-knowledge-base",
     link: "#",
   },
   {
@@ -186,15 +240,18 @@ export const listProyek = [
     ],
     tools: [
       "Flutter",
+      "Dart",
       "Python",
       "TensorFlow",
+      "TensorFlow Lite",
       "MobileNetV2",
       "SQLite",
     ],
     features: [
-      "Identifikasi motif batik menggunakan kamera",
-      "Upload gambar dari galeri",
-      "Informasi edukatif setiap motif",
+      "Melakukan prediksi motif batik langsung di perangkat menggunakan TensorFlow Lite tanpa memerlukan koneksi internet.",
+      "Memilih gambar batik dari galeri perangkat untuk diidentifikasi.",
+      "Mengambil gambar batik secara langsung menggunakan kamera perangkat untuk proses klasifikasi.",
+      "Menyimpan data informasi batik dan gambar pendukung menggunakan SQLite",
       "Galeri Motif Batik Pekalongan",
     ],
     github: "https://github.com/khadziq059/Ambatik",
@@ -292,4 +349,38 @@ export const listProyek = [
     github: "https://github.com/khadziq059/Inventori-BPS",
     link: "https://simbabps.page.gd/",
   },
+  {
+    id: 7,
+    slug: "roblox-egg-hunt",
+    gambar: Proyek6,
+    nama: "Egg Hunt Adventure",
+    desk: "Game multiplayer berbasis Roblox yang mengusung konsep pet collection dan egg hunting. Pemain dapat menjelajahi berbagai map untuk menemukan telur, menghindari monster penjaga, serta mengumpulkan telur dengan tingkat kelangkaan berbeda. Telur dapat ditetaskan menjadi berbagai hewan peliharaan yang bisa ditempatkan di pet farm untuk menghasilkan koin secara otomatis.",
+    screenshots: [
+      "/assets/proyek/roblox/roblox1.png",
+      "/assets/proyek/roblox/roblox2.png",
+      "/assets/proyek/roblox/roblox3.png",
+      "/assets/proyek/roblox/roblox4.png",
+      "/assets/proyek/roblox/roblox5.png",
+    ],
+    tools: [
+      "Roblox Studio",
+      "Luau",
+      "Roblox API",
+    ],
+    features: [
+      "Eksplorasi berbagai map untuk menemukan telur dengan tingkat kelangkaan berbeda",
+      "Sistem egg hunting dengan jumlah telur terbatas di setiap map",
+      "Monster penjaga yang memberikan tantangan saat berburu telur",
+      "Sistem membawa, menjatuhkan, dan mencuri telur milik pemain lain",
+      "Sistem penetasan telur menjadi berbagai koleksi hewan peliharaan",
+      "Pet farm untuk menghasilkan koin secara otomatis",
+      "Sistem upgrade kapasitas pet farm",
+      "Sistem peningkatan kecepatan karakter melalui fitur latihan",
+      "Sistem slingshot untuk menyerang dan menjatuhkan telur yang dibawa pemain lain",
+      "Sistem rebirth dengan progres dan koleksi pet yang tetap dipertahankan",
+      "Sistem pendapatan pet saat pemain sedang offline",
+    ],
+    github: "#",
+    link: "#",
+},
 ];
