@@ -2,7 +2,7 @@
 
 Website portofolio pribadi saya yang menampilkan profil, keahlian, dan proyek-proyek yang pernah saya kerjakan.
 
-🔗 **Demo:** [portofolio-eight-topaz-10.vercel.app](https://portofolio-eight-topaz-10.vercel.app)
+🔗 **Demo:** [portofolio-eight-topaz-10.vercel.app](https://mkhadziq.vercel.app)
 
 ## Teknologi
 
